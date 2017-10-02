@@ -3003,6 +3003,9 @@
         "device_has": ["I2C", "I2C_ASYNCH", "INTERRUPTIN", "LOWPOWERTIMER", "PORTIN", "PORTINOUT", "PORTOUT", "PWMOUT", "RTC", "SERIAL", "SERIAL_ASYNCH", "SLEEP", "SPI", "SPI_ASYNCH", "SPISLAVE"],
         "release_versions": ["2", "5"]
     },
+    "NRF51_BEACON": {
+        "inherits": ["MCU_NRF51_16K"]
+    },
     "MCU_NRF52": {
         "inherits": ["Target"],
         "core": "Cortex-M4F",
