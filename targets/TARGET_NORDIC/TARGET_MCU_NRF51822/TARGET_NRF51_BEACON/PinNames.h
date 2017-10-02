@@ -130,10 +130,10 @@ typedef enum {
     // Not connected
     NC = (int)0xFFFFFFFF,
 
-    RX_PIN_NUMBER = p2,
-    TX_PIN_NUMBER = p3,
-    CTS_PIN_NUMBER = p11,
-    RTS_PIN_NUMBER = p21,
+    RX_PIN_NUMBER = p3,
+    TX_PIN_NUMBER = p4,
+    CTS_PIN_NUMBER = p5,
+    RTS_PIN_NUMBER = p6,
 
     // mBed interface Pins
     USBTX = TX_PIN_NUMBER,
