@@ -1,3 +1,7 @@
+# This is a fork
+
+unless you're really interested into the modifications for custom RF Beacons, please use the original mbed-os repo and not this fork, as I will not be updating it often from the original and I will strip it down for specific convenience
+
 # ARM mbed OS
  
 mbed OS is an open-source embedded operating system designed for the "things" in the Internet of Things (IoT). mbed OS includes the features you need to develop a connected product using an ARM Cortex-M microcontroller.
