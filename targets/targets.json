@@ -1759,7 +1759,7 @@
         "is_disk_virtual": true,
         "supported_toolchains": ["ARM", "GCC_ARM"],
         "public": false,
-        "MERGE_SOFT_DEVICE": true,
+        "MERGE_SOFT_DEVICE": false,
         "EXPECTED_SOFTDEVICES_WITH_OFFSETS": [
             {
                 "boot": "s130_nrf51_1.0.0_bootloader.hex",
@@ -1793,7 +1793,7 @@
             "toolchains": ["ARM_STD", "GCC_ARM"]
         },
         "program_cycle_s": 6,
-        "features": ["BLE"],
+        "features": [],
         "device_has": ["ANALOGIN", "I2C", "INTERRUPTIN", "PORTIN", "PORTINOUT", "PORTOUT", "PWMOUT", "SERIAL", "SLEEP", "SPI", "SPISLAVE"]
     },
     "MCU_NRF51_16K_BASE": {
