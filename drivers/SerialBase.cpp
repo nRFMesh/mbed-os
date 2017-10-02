@@ -18,7 +18,7 @@
 #include "platform/mbed_critical.h"
 #include "platform/mbed_sleep.h"
 
-#if DEVICE_SERIAL
+#if (DEVICE_SERIAL!=0)
 
 namespace mbed {
 

@@ -13,7 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-//#include <math.h>
+
+#if (DEVICE_SPI!=0)
+
+ //#include <math.h>
 #include "mbed_assert.h"
 #include "spi_api.h"
 #include "cmsis.h"
@@ -299,3 +302,4 @@ void spi_slave_write(spi_t *obj, int value)
     obj->spis->EVENTS_ACQUIRED = 0;
     obj->spis->EVENTS_END      = 0;
 }
+#endif

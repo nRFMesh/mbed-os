@@ -15,7 +15,7 @@
  */
 #include "drivers/I2C.h"
 
-#if DEVICE_I2C
+#if (DEVICE_I2C != 0)
 
 #if DEVICE_I2C_ASYNCH
 #include "platform/mbed_sleep.h"

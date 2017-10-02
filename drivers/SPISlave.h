@@ -19,7 +19,7 @@
 #include "platform/platform.h"
 #include "platform/NonCopyable.h"
 
-#if defined (DEVICE_SPISLAVE) || defined(DOXYGEN_ONLY)
+#if (DEVICE_SPISLAVE!=0) || defined(DOXYGEN_ONLY)
 
 #include "hal/spi_api.h"
 

@@ -137,10 +137,8 @@ typedef enum {
 
     // mBed interface Pins
     USBTX = TX_PIN_NUMBER,
-    USBRX = RX_PIN_NUMBER,
+    USBRX = RX_PIN_NUMBER
 
-    I2C_SDA0 = NC,
-    I2C_SCL0 = NC
 
 } PinName;
 

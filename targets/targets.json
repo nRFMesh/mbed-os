@@ -1794,7 +1794,7 @@
         },
         "program_cycle_s": 6,
         "features": [],
-        "device_has": ["ANALOGIN", "I2C", "INTERRUPTIN", "PORTIN", "PORTINOUT", "PORTOUT", "PWMOUT", "SERIAL", "SLEEP", "SPI", "SPISLAVE"]
+        "device_has": ["ANALOGIN", "INTERRUPTIN", "PORTIN", "PORTINOUT", "PORTOUT", "PWMOUT", "SERIAL", "SLEEP"]
     },
     "MCU_NRF51_16K_BASE": {
         "inherits": ["MCU_NRF51"],

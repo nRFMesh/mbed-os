@@ -13,6 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+#if (DEVICE_I2C!=0)
+
 #include "mbed_assert.h"
 #include "i2c_api.h"
 #include "cmsis.h"
@@ -307,3 +310,4 @@ int i2c_byte_write(i2c_t *obj, int data)
     }
     return (1 - status);
 }
+#endif

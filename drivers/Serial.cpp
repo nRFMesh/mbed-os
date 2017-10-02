@@ -16,7 +16,7 @@
 #include "drivers/Serial.h"
 #include "platform/mbed_wait_api.h"
 
-#if DEVICE_SERIAL
+#if (DEVICE_SERIAL!=0)
 
 namespace mbed {
 

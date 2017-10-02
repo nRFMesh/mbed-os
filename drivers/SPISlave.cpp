@@ -15,7 +15,7 @@
  */
 #include "drivers/SPISlave.h"
 
-#if DEVICE_SPISLAVE
+#if (DEVICE_SPISLAVE != 0)
 
 namespace mbed {
 

@@ -18,7 +18,7 @@
 
 #include "platform/platform.h"
 
-#if defined (DEVICE_SERIAL) || defined(DOXYGEN_ONLY)
+#if (DEVICE_SERIAL!=0) || defined(DOXYGEN_ONLY)
 
 #include "Stream.h"
 #include "SerialBase.h"

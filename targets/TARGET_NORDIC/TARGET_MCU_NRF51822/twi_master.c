@@ -9,6 +9,7 @@
  * the file.
  *
  */
+#if (DEVICE_SPI!=0)
 
 #include "twi_master.h"
 #include "twi_config.h"
@@ -302,3 +303,4 @@ bool twi_master_transfer(uint8_t   address,
 }
 
 /*lint --flb "Leave library region" */
+#endif
