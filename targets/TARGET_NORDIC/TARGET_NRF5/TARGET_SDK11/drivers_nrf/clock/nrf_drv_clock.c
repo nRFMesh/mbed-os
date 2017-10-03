@@ -41,9 +41,10 @@
 #include "nrf_error.h"
 #include "nordic_common.h"
 
+#include "nrf_soc.h"
+
 #ifdef SOFTDEVICE_PRESENT
 #include "nrf_sdm.h"
-#include "nrf_soc.h"
 #include "app_util_platform.h"
 #else
 #include "app_util_platform.h"
@@ -451,47 +452,50 @@ static __INLINE void clock_clk_started_notify(nrf_drv_clock_handler_item_t **p_h
 }
 
 #ifndef SOFTDEVICE_PRESENT
-void POWER_CLOCK_IRQHandler(void)
-{
-    if (nrf_clock_event_check(NRF_CLOCK_EVENT_HFCLKSTARTED))
+    void POWER_CLOCK_IRQHandler(void)
     {
-        nrf_clock_event_clear(NRF_CLOCK_EVENT_HFCLKSTARTED);
-        nrf_clock_int_disable(NRF_CLOCK_INT_HF_STARTED_MASK);
-        m_clock_cb.hfclk_on = true;
-        clock_clk_started_notify((nrf_drv_clock_handler_item_t **)&m_clock_cb.p_hf_head, NRF_DRV_CLOCK_EVT_HFCLK_STARTED);
-    }
-    if (nrf_clock_event_check(NRF_CLOCK_EVENT_LFCLKSTARTED))
-    {
-        nrf_clock_event_clear(NRF_CLOCK_EVENT_LFCLKSTARTED);
-        nrf_clock_int_disable(NRF_CLOCK_INT_LF_STARTED_MASK);
-        m_clock_cb.lfclk_on = true;
-        clock_clk_started_notify((nrf_drv_clock_handler_item_t **)&m_clock_cb.p_lf_head, NRF_DRV_CLOCK_EVT_LFCLK_STARTED);
-    }
-#if CALIBRATION_SUPPORT
-    if (nrf_clock_event_check(NRF_CLOCK_EVENT_CTTO))
-    {
-        nrf_clock_event_clear(NRF_CLOCK_EVENT_CTTO);
-        nrf_clock_int_disable(NRF_CLOCK_INT_CTTO_MASK);
-        nrf_drv_clock_hfclk_request(&m_clock_cb.cal_hfclk_started_handler_item);
-    }
-
-    if (nrf_clock_event_check(NRF_CLOCK_EVENT_DONE))
-    {
-        nrf_clock_event_clear(NRF_CLOCK_EVENT_DONE);
-        nrf_clock_int_disable(NRF_CLOCK_INT_DONE_MASK);
-
-        nrf_drv_clock_hfclk_release();
-        nrf_drv_clock_evt_type_t evt_type = (m_clock_cb.cal_state == CAL_STATE_ABORT) ?
-                                       NRF_DRV_CLOCK_EVT_CAL_ABORTED : NRF_DRV_CLOCK_EVT_CAL_DONE;
-        m_clock_cb.cal_state = CAL_STATE_IDLE;
-        if (m_clock_cb.cal_done_handler)
+        if (nrf_clock_event_check(NRF_CLOCK_EVENT_HFCLKSTARTED))
         {
-            m_clock_cb.cal_done_handler(evt_type);
+            nrf_clock_event_clear(NRF_CLOCK_EVENT_HFCLKSTARTED);
+            nrf_clock_int_disable(NRF_CLOCK_INT_HF_STARTED_MASK);
+            m_clock_cb.hfclk_on = true;
+            clock_clk_started_notify((nrf_drv_clock_handler_item_t **)&m_clock_cb.p_hf_head, NRF_DRV_CLOCK_EVT_HFCLK_STARTED);
         }
+        if (nrf_clock_event_check(NRF_CLOCK_EVENT_LFCLKSTARTED))
+        {
+            nrf_clock_event_clear(NRF_CLOCK_EVENT_LFCLKSTARTED);
+            nrf_clock_int_disable(NRF_CLOCK_INT_LF_STARTED_MASK);
+            m_clock_cb.lfclk_on = true;
+            clock_clk_started_notify((nrf_drv_clock_handler_item_t **)&m_clock_cb.p_lf_head, NRF_DRV_CLOCK_EVT_LFCLK_STARTED);
+        }
+    #if CALIBRATION_SUPPORT
+        if (nrf_clock_event_check(NRF_CLOCK_EVENT_CTTO))
+        {
+            nrf_clock_event_clear(NRF_CLOCK_EVENT_CTTO);
+            nrf_clock_int_disable(NRF_CLOCK_INT_CTTO_MASK);
+            nrf_drv_clock_hfclk_request(&m_clock_cb.cal_hfclk_started_handler_item);
+        }
+
+        if (nrf_clock_event_check(NRF_CLOCK_EVENT_DONE))
+        {
+            nrf_clock_event_clear(NRF_CLOCK_EVENT_DONE);
+            nrf_clock_int_disable(NRF_CLOCK_INT_DONE_MASK);
+
+            nrf_drv_clock_hfclk_release();
+            nrf_drv_clock_evt_type_t evt_type = (m_clock_cb.cal_state == CAL_STATE_ABORT) ?
+                                        NRF_DRV_CLOCK_EVT_CAL_ABORTED : NRF_DRV_CLOCK_EVT_CAL_DONE;
+            m_clock_cb.cal_state = CAL_STATE_IDLE;
+            if (m_clock_cb.cal_done_handler)
+            {
+                m_clock_cb.cal_done_handler(evt_type);
+            }
+        }
+    #endif //CALIBRATION_SUPPORT
     }
-#endif //CALIBRATION_SUPPORT
-}
 #else
+#endif // SOFTDEVICE_PRESENT
+
+
 void nrf_drv_clock_on_soc_event(uint32_t evt_id)
 {
     if (evt_id == NRF_EVT_HFCLKSTARTED)
@@ -499,7 +503,6 @@ void nrf_drv_clock_on_soc_event(uint32_t evt_id)
         clock_clk_started_notify((nrf_drv_clock_handler_item_t **)&m_clock_cb.p_hf_head, NRF_DRV_CLOCK_EVT_HFCLK_STARTED);
     }
 }
-#endif // SOFTDEVICE_PRESENT
 
 #undef NRF_CLOCK_LFCLK_RC
 #undef NRF_CLOCK_LFCLK_Xtal
