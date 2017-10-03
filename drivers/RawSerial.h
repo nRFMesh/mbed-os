@@ -18,7 +18,7 @@
 
 #include "platform/platform.h"
 
-#if (DEVICE_SERIAL != 0) || defined(DOXYGEN_ONLY)
+#if defined (DEVICE_SERIAL) || defined(DOXYGEN_ONLY)
 
 #include "drivers/SerialBase.h"
 #include "hal/serial_api.h"

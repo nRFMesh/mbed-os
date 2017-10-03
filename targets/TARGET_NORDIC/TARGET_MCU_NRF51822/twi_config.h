@@ -14,10 +14,7 @@
 
 #include "PinNames.h"
 
-#if (DEVICE_SPI!=0)
 #define TWI_MASTER_CONFIG_CLOCK_PIN_NUMBER (I2C_SCL0)
 #define TWI_MASTER_CONFIG_DATA_PIN_NUMBER (I2C_SDA0)
-
-#endif
 
 #endif

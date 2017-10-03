@@ -37,7 +37,6 @@
  */
 
 
-
 #include "softdevice_handler.h"
 #include <stdlib.h>
 #include <stdint.h>
@@ -54,9 +53,6 @@
 #if CLOCK_ENABLED
 #include "nrf_drv_clock.h"
 #endif
-
-
-//#ifdef SOFTDEVICE_PRESENT
 
 #if defined(ANT_STACK_SUPPORT_REQD) && defined(BLE_STACK_SUPPORT_REQD)
     #include "ant_interface.h"
@@ -519,11 +515,3 @@ uint32_t softdevice_enable(ble_enable_params_t * p_ble_enable_params)
 /*lint -restore*/
 
 #endif //BLE_STACK_SUPPORT_REQD
-
-/*#else 
-bool softdevice_handler_isEnabled(void)
-{
-    return false;
-}
-
-#endif */
