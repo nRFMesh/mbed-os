@@ -4,8 +4,6 @@
 #ifndef GREENTEA_SERIAL_H
 #define GREENTEA_SERIAL_H
 
-#if (DEVICE_SERIAL!=0)
-
 #include "RawSerial.h"
 #include "SingletonPtr.h"
 
@@ -15,10 +13,6 @@ public:
 };
 
 extern SingletonPtr<GreenteaSerial> greentea_serial;
-
-
-#endif
-
 #endif
 
 /** @}*/
