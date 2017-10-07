@@ -185,7 +185,7 @@ osThreadAttr_t _main_thread_attr;
 
 /** The main thread's stack size can be configured by the application, if not explicitly specified it'll default to 4K */
 #ifndef MBED_CONF_APP_MAIN_STACK_SIZE
-#define MBED_CONF_APP_MAIN_STACK_SIZE 512
+#define MBED_CONF_APP_MAIN_STACK_SIZE 4096
 #endif
 MBED_ALIGN(8) char _main_stack[MBED_CONF_APP_MAIN_STACK_SIZE];
 mbed_rtos_storage_thread_t _main_obj;
